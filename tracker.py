@@ -6,12 +6,15 @@ import json
 import numpy as np
 from build import build_forward
 import cv2
+import os
 
 class tracker(object):
 
     def __init__(self, model='lorenzmie'):
-        self.config = 'models/'+model+'.json'
-        self.checkpoint = 'models/'+model+'.ckpt'
+        package_directory = os.path.dirname(os.path.abspath(__file__))
+        model_dir = os.path.join(package_directory, 'models')
+        self.config = os.path.join(model_dir, model+'.json')
+        self.checkpoint = os.path.join(model_dir, model+'.ckpt')
 
         with open(self.config, 'r') as f:
             H = json.load(f)
