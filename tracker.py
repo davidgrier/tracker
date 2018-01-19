@@ -52,7 +52,7 @@ class tracker(object):
                 boxes[y, x, 1] = int(bbox[1]) + self.region_size/2 + self.region_size * y
         goodx, goody = (confidences[:,:,1] > min_confidence).nonzero()
         boxes = boxes[goodx,goody,:]
-        rects, _ = cv2.groupRectangles(boxes.tolist(), 1, 0.85)
+        rects, _ = cv2.groupRectangles(boxes.tolist(), 1)
         return rects
 
 def main():
